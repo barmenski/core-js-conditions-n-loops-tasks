@@ -129,8 +129,48 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const tens = Math.trunc(num / 10);
+  const ostatok = num % 10;
+  let lastDigit = '';
+  let result = '';
+  switch (ostatok) {
+    case 9:
+      lastDigit = 'IX';
+      break;
+    case 8:
+      lastDigit = 'VIII';
+      break;
+    case 7:
+      lastDigit = 'VII';
+      break;
+    case 6:
+      lastDigit = 'VI';
+      break;
+    case 5:
+      lastDigit = 'V';
+      break;
+    case 4:
+      lastDigit = 'IV';
+      break;
+    case 3:
+      lastDigit = 'III';
+      break;
+    case 2:
+      lastDigit = 'II';
+      break;
+    case 1:
+      lastDigit = 'I';
+      break;
+    default:
+      lastDigit = '';
+      break;
+  }
+  for (let i = 0; i < tens; i += 1) {
+    result += 'X';
+  }
+  result += lastDigit;
+  return result;
 }
 
 /**
@@ -148,8 +188,60 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let digitStr = '';
+  let result = '';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    switch (numberStr[i]) {
+      case '0':
+        digitStr = 'zero';
+        break;
+      case '1':
+        digitStr = 'one';
+        break;
+      case '2':
+        digitStr = 'two';
+        break;
+      case '3':
+        digitStr = 'three';
+        break;
+      case '4':
+        digitStr = 'four';
+        break;
+      case '5':
+        digitStr = 'five';
+        break;
+      case '6':
+        digitStr = 'six';
+        break;
+      case '7':
+        digitStr = 'seven';
+        break;
+      case '8':
+        digitStr = 'eight';
+        break;
+      case '9':
+        digitStr = 'nine';
+        break;
+      case '.':
+      case ',':
+        digitStr = 'point';
+        break;
+      case '-':
+        digitStr = 'minus';
+        break;
+      default:
+        digitStr = '';
+        break;
+    }
+    if (result) {
+      result += ' ';
+      result += digitStr;
+    } else {
+      result += digitStr;
+    }
+  }
+  return result;
 }
 
 /**
